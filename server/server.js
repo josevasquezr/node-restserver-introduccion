@@ -14,13 +14,21 @@ app.get('/', (req, res) => {
 });
 
 app.get('/usuario/:id/:depto', (req, res) => {
-    let id = req.params.id;
-    let depto = req.params.depto;
+    let id = req.params.id || '';
+    let depto = req.params.depto || '';
 
-    res.json({
-        id,
-        depto
-    });
+    if (id !== '' && depto !== '') {
+        res.json({
+            id,
+            depto
+        });
+    } else {
+        res.status(400).json({
+            ok: false,
+            mensaje: 'Los parametros id y depto son obligatorios'
+        });
+    }
+
 });
 
 app.post('/usuario', (req, res) => {
@@ -28,11 +36,18 @@ app.post('/usuario', (req, res) => {
     let edad = req.body.edad;
     let telefono = req.body.telefono;
 
-    res.json({
-        nombre,
-        edad,
-        telefono
-    });
+    if (nombre && edad && telefono) {
+        res.json({
+            nombre,
+            edad,
+            telefono
+        });
+    } else {
+        res.status(400).json({
+            ok: false,
+            mensaje: 'Todos los parametros son obligatorios'
+        });
+    }
 });
 
 app.listen(process.env.PORT, () => console.log('Escuchando el puerto: ', process.env.PORT));
