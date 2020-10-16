@@ -23,11 +23,4 @@ mongoose.connect(process.env.URLDB, {
     console.log('Base de datos ONLINE...');
 });
 
-/* 
-    MongoDB Atlas:
-    User: jjvasquezr666
-    Pass: 3622QeetPlu90uBx
-    URL: mongodb+srv://jjvasquezr666:3622QeetPlu90uBx@cluster0.0wn84.mongodb.net/cafe
-*/
-
 app.listen(process.env.PORT, () => console.log('Escuchando el puerto: ', process.env.PORT));
